@@ -24,7 +24,7 @@ export default function RootLayout({
       }}
     >
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={`${inter.className} bg-primary2`}>{children}</body>
       </html>
     </ClerkProvider>
   );
