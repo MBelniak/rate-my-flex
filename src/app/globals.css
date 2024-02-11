@@ -5,6 +5,7 @@
 :root {
     --foreground-rgb: 0, 0, 0;
     --primary2: #ffee32;
+    --primary2-hover: #ffee32;
     --secondary: #673ddb;
     --secondary2: #66529c;
     --desert: #868252;
