@@ -1,0 +1,17 @@
+.cl-formButtonPrimary {
+    background-color: var(--primary2);
+    color: #000;
+
+    &:hover,
+    &:focus {
+        background-color: var(--desert);
+    }
+}
+
+.cl-footerActionLink {
+    color: var(--primary2);
+
+    &:hover {
+        color: var(--desert);
+    }
+}
