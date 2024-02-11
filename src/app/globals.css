@@ -3,22 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+    --foreground-rgb: 0, 0, 0;
+    --primary2: #ffee32;
+    --secondary: #673ddb;
+    --secondary2: #66529c;
+    --desert: #868252;
+    --background2: #33322c;
+    --card: #4d485c;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+    }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-
+    color: rgb(var(--foreground-rgb));
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
