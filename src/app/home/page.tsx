@@ -4,26 +4,10 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatIcon from '@mui/icons-material/Chat';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import { Drawer } from '@/app/[components]/Drawer';
+import { CustomDrawer } from '@/app/[components]/Drawer';
 import { Logo } from '@/app/[components]/Logo';
 import MenuIcon from '@mui/icons-material/Menu';
 export default function Home() {
-  const [open, setOpen] = useState(false);
-
-  const toggleDrawer =
-    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event &&
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
-
-      setOpen(open);
-    };
-
   return (
     <>
       <div
@@ -31,13 +15,10 @@ export default function Home() {
           'w-full grid [grid-template-columns:80px_1fr_80px] items-center place-items-center'
         }
       >
-        <MenuIcon
-          className={'self-start hover:cursor-pointer self-center'}
-          onClick={toggleDrawer(true)}
-        />
+        <CustomDrawer />
         <Logo />
       </div>
-      <Drawer toggleDrawer={toggleDrawer} open={open} />
+
       <div className="flex flex-col justify-center items-center p-8">
         <h1>Here will be pretty women and handsome boys </h1>
         <div
