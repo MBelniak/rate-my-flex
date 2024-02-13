@@ -11,8 +11,12 @@
   "dependencies": {
     "@clerk/nextjs": "^4.29.7",
     "@clerk/themes": "^1.7.9",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@fontsource/barlow": "^5.0.8",
     "@fontsource/righteous": "^5.0.18",
+    "@mui/icons-material": "^5.15.10",
+    "@mui/material": "^5.15.10",
     "@nextui-org/react": "^2.2.9",
     "framer-motion": "^11.0.3",
     "next": "14.1.0",
