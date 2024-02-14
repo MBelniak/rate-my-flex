@@ -1,3 +1,5 @@
+import Navbar from '@/components/Navbar/navbar';
+
 export default function Home() {
     return (
         <div className="flex flex-col justify-center items-center p-8">
