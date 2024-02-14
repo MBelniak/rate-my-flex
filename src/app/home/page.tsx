@@ -60,15 +60,20 @@ export default async function Home() {
             </ul>
             Images:{' '}
             <ul>
-                {images.map((image) => (
-                    <li key={JSON.stringify(image)}>
-                        ID: {image.id}, image:{' '}
-                        <Image
-                            src={getCloudinaryImgSrc(image.publicId)}
-                            alt="someone handsome"
-                        />
-                    </li>
-                ))}
+                {images.map((image) => {
+                    console.log(image);
+                    return (
+                        <li key={JSON.stringify(image)}>
+                            ID: {image.id}, image: {image.width}
+                            <Image
+                                src={getCloudinaryImgSrc(image.publicId)}
+                                alt="someone handsome"
+                                width={500}
+                                height={500}
+                            />
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );
