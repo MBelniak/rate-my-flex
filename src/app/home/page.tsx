@@ -66,14 +66,14 @@ export default async function Home() {
                     return (
                         <li key={JSON.stringify(image)}>
                             ID: {image.id}, image: {image.width}
-                        <Image
-                            src={getCloudinaryImgSrc(image.publicId)}
-                            alt="someone handsome"
-                            width={500}
-                            height={500}
-                        />
-                    </li>
-                );
+                            <Image
+                                src={getCloudinaryImgSrc(image.publicId)}
+                                alt="someone handsome"
+                                width={500}
+                                height={500}
+                            />
+                        </li>
+                    );
                 })}
             </ul>
         </div>
