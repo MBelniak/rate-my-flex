@@ -1,8 +1,4 @@
-import { currentUser } from '@clerk/nextjs';
 import { v2 as cloudinary } from 'cloudinary';
-import { databases } from '@/database/appwrite';
-import sdk, { Query } from 'node-appwrite';
-import { NextResponse } from 'next/server';
 import { redirect } from 'next/navigation';
 
 cloudinary.config({

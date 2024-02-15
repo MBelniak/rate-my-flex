@@ -19,7 +19,11 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    await initDatabase();
+    if (!process.env.APPWRITE_DB_ID) {
+        throw new Error('Cannot find process.env.APPWRITE_DB_ID');
+    }
+
+    await initDatabase(process.env.APPWRITE_DB_ID);
 
     return (
         <ClerkProvider

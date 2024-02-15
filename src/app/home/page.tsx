@@ -1,9 +1,11 @@
 import { currentUser } from '@clerk/nextjs';
 import { v2 as cloudinary } from 'cloudinary';
-import { databases } from '@/database/appwrite';
 import sdk, { Query } from 'node-appwrite';
 import { NextResponse } from 'next/server';
 import Image from 'next/image';
+import container from '@/context';
+import { AbstractDatabaseClient } from '@/database';
+
 cloudinary.config({
     cloud_name: 'diu6tq3vr',
     api_key: '248719574372746',
@@ -21,7 +23,7 @@ export default async function Home() {
         return NextResponse.redirect('/sign-in');
     }
 
-    console.log(user);
+    const databases = container.get(AbstractDatabaseClient).getClient();
     const posts = (
         await databases.listDocuments<
             sdk.Models.Document & { id: string; userId: string }
@@ -66,6 +68,8 @@ export default async function Home() {
                         <Image
                             src={getCloudinaryImgSrc(image.publicId)}
                             alt="someone handsome"
+                            width={500}
+                            height={500}
                         />
                     </li>
                 ))}
