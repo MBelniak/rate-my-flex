@@ -1,6 +1,7 @@
 import sdk from 'node-appwrite';
-import container from '@/context';
+import container from '../iocContainer';
 import { AbstractDatabaseClient } from '@/database/index';
+import { IMAGES_COLLECTION_ID, POSTS_COLLECTION_ID } from '@/service';
 
 export let client = new sdk.Client();
 
@@ -31,16 +32,8 @@ const initializeCollections = async (
     const database = await databases.get(databaseId);
     const postsCollection = await databases.createCollection(
         database.$id,
-        'Posts',
-        'Posts'
-    );
-
-    await databases.createStringAttribute(
-        database.$id,
-        postsCollection.$id,
-        'id',
-        255,
-        true
+        POSTS_COLLECTION_ID,
+        POSTS_COLLECTION_ID
     );
 
     await databases.createStringAttribute(
@@ -51,18 +44,18 @@ const initializeCollections = async (
         true
     );
 
-    const imagesCollection = await databases.createCollection(
-        database.$id,
-        'Images',
-        'Images'
-    );
-
     await databases.createStringAttribute(
         database.$id,
-        imagesCollection.$id,
-        'id',
-        255,
-        true
+        postsCollection.$id,
+        'description',
+        1073741824,
+        false
+    );
+
+    const imagesCollection = await databases.createCollection(
+        database.$id,
+        IMAGES_COLLECTION_ID,
+        IMAGES_COLLECTION_ID
     );
 
     await databases.createStringAttribute(

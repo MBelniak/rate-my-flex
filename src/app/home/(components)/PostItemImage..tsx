@@ -1,7 +1,7 @@
 'use client';
 import { CldImage } from 'next-cloudinary';
 import React from 'react';
-import type { Image } from '@/app/home/PostItem';
+import { Image } from '@/model/Image';
 
 export const PostItemImage: React.FC<{ image: Image }> = ({ image }) => {
     return (
