@@ -24,6 +24,7 @@ export async function PostItem({ post }: { post: Post }) {
     return (
         <div>
             <p>Post ID: {post.$id}</p>
+            <p>Post description: {post.description}</p>
             Images:
             <ul>
                 {images.documents.map((image) => (
