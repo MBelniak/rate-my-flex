@@ -2,9 +2,9 @@ import { currentUser } from '@clerk/nextjs';
 import { v2 as cloudinary } from 'cloudinary';
 import sdk, { Query } from 'node-appwrite';
 import { NextResponse } from 'next/server';
-import Image from 'next/image';
 import container from '@/context';
 import { AbstractDatabaseClient } from '@/database';
+import { PostItem } from '@/app/home/PostItem';
 
 cloudinary.config({
     cloud_name: 'diu6tq3vr',
@@ -12,9 +12,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const getCloudinaryImgSrc = (publicId: string) => {
-    return cloudinary.url(publicId);
-};
+export type Post = sdk.Models.Document & { id: string; userId: string };
 
 export default async function Home() {
     const user = await currentUser();
@@ -31,23 +29,6 @@ export default async function Home() {
             Query.equal('userId', user?.id),
         ])
     ).documents;
-    const images =
-        posts.length > 0
-            ? (
-                  await databases.listDocuments<
-                      sdk.Models.Document & {
-                          id: string;
-                          postId: string;
-                          publicId: string;
-                      }
-                  >(process.env.APPWRITE_DB_ID!, 'Images', [
-                      Query.equal(
-                          'postId',
-                          posts.map((doc) => doc.id)
-                      ),
-                  ])
-              ).documents
-            : [];
 
     return (
         <div className="flex flex-col justify-center items-center p-8">
@@ -56,25 +37,9 @@ export default async function Home() {
             <ul>
                 {posts.map((post) => (
                     <li key={JSON.stringify(post)}>
-                        ID: {post.id}, user ID: {post.userId}
+                        <PostItem post={post} />
                     </li>
                 ))}
-            </ul>
-            Images:{' '}
-            <ul>
-                {images.map((image) => {
-                    return (
-                        <li key={JSON.stringify(image)}>
-                            ID: {image.id}
-                            <Image
-                                src={getCloudinaryImgSrc(image.publicId)}
-                                alt="someone handsome"
-                                width={500}
-                                height={500}
-                            />
-                        </li>
-                    );
-                })}
             </ul>
         </div>
     );
