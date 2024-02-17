@@ -65,7 +65,7 @@ export default async function Home() {
                 {images.map((image) => {
                     return (
                         <li key={JSON.stringify(image)}>
-                            ID: {image.id}, image: {image.width}
+                            ID: {image.id}
                             <Image
                                 src={getCloudinaryImgSrc(image.publicId)}
                                 alt="someone handsome"

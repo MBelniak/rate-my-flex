@@ -58,7 +58,7 @@ export default function Navbar() {
                         <Link
                             className="w-full"
                             href={item.href}
-                            size="lg"
+                            // size="lg"
                             color={
                                 pathName === item.href
                                     ? 'warning'
