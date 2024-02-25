@@ -7,7 +7,10 @@ import { Logger } from '@/server/Logger';
 import prettyBytes from 'pretty-bytes';
 
 const withLogging = (
-    handler: (request: NextRequest, response: NextResponse) => Promise<unknown>
+    handler: (
+        request: NextRequest,
+        response: NextResponse
+    ) => Promise<NextResponse>
 ) => {
     return async (request: NextRequest, response: NextResponse) => {
         const logger = Logger.getLogger();
