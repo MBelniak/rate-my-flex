@@ -1,37 +1,61 @@
 'use client';
-import React, { useCallback, useState } from 'react';
-import { apiClient } from '@/trpc/client';
+import React, { useCallback, useRef, useState } from 'react';
+import { Button } from '@nextui-org/react';
+import { FileUpload } from 'primereact/fileupload';
 
-// noinspection JSUnusedLocalSymbols - added here only for concept of being able to type it correctly in line 20
-export const NewPostForm: React.FC<{ userId: string }> = ({ userId }) => {
+export const NewPostForm: React.FC = () => {
     const [description, setDescription] = useState<string>('');
+    const fileUploadRef = useRef<FileUpload | null>(null);
     const submitForm = useCallback(async () => {
-        const post = await apiClient.posts.mutate({ description });
+        const images = fileUploadRef.current?.getFiles();
+        const data = new FormData();
+        data.append('description', description);
+        if (images) {
+            console.dir(images);
+            images.forEach((image) => {
+                data.append('file', image);
+            });
+        }
+        await fetch('/api/posts', {
+            method: 'POST',
+            body: data,
+        });
     }, [description]);
     return (
-        <form onSubmit={submitForm}>
-            <div className={'flex gap-1'}>
-                <label htmlFor={'description'}>Post description</label>
-                <input
-                    id={'description'}
-                    name={'description'}
-                    placeholder={'Add your description here...'}
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-            </div>
-            <button type={'submit'}>Add new flex!</button>
-        </form>
+        <div>
+            <h2>Upload new post</h2>
+            <form>
+                <div className={'grid [grid-template-columns:1fr_4fr] gap-4'}>
+                    <label htmlFor={'description'}>Post description</label>
+                    <input
+                        id={'description'}
+                        name={'description'}
+                        placeholder={'Add your description here...'}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <label htmlFor={'images'}>Images</label>
+                    <FileUpload
+                        name="images"
+                        multiple
+                        accept="image/*"
+                        maxFileSize={1000000}
+                        emptyTemplate={
+                            <p className="m-0">
+                                Drag and drop files to here to upload.
+                            </p>
+                        }
+                        cancelOptions={{
+                            className: 'hidden',
+                        }}
+                        uploadOptions={{
+                            className: 'hidden',
+                        }}
+                        ref={fileUploadRef}
+                    />
+                </div>
+                <Button onClick={submitForm}>Add new flex!</Button>
+            </form>
+        </div>
     );
 };
-
-// I don't know how to make this shit work without throwing TS2322. Docs mention it not. Type assertion makes it.
-// export const NewPostForm: NextComponentType<
-//     NextPageContext,
-//     {},
-//     { userId: string }
-// > = trpc.withTRPC(NewPostFormBase) as NextComponentType<
-//     NextPageContext,
-//     {},
-//     { userId: string }
-// >;

@@ -1,7 +1,7 @@
 import sdk from 'node-appwrite';
 import container from '../iocContainer';
 import { AbstractDatabaseClient } from '@/database/index';
-import { IMAGES_COLLECTION_ID, POSTS_COLLECTION_ID } from '@/service';
+import { POSTS_COLLECTION_ID } from '@/service';
 
 export let client = new sdk.Client();
 
@@ -52,25 +52,13 @@ const initializeCollections = async (
         false
     );
 
-    const imagesCollection = await databases.createCollection(
-        database.$id,
-        IMAGES_COLLECTION_ID,
-        IMAGES_COLLECTION_ID
-    );
-
     await databases.createStringAttribute(
         database.$id,
-        imagesCollection.$id,
-        'publicId',
-        255,
-        true
-    );
-
-    await databases.createStringAttribute(
-        database.$id,
-        imagesCollection.$id,
-        'postId',
-        255,
+        postsCollection.$id,
+        'imagePublicIds',
+        1073741824,
+        false,
+        undefined,
         true
     );
 };

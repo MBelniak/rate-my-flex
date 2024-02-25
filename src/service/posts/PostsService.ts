@@ -3,31 +3,24 @@ import { AbstractDatabaseClient } from '@/database';
 import sdk, { Query } from 'node-appwrite';
 import { Post } from '@/model/Post';
 import { POSTS_COLLECTION_ID } from '@/service';
-import { TRPCError } from '@trpc/server';
 import { injectable } from 'inversify';
 
 export abstract class AbstractPostsService {
     abstract getPostsByUserId(userId: string): Promise<Post[]>;
     abstract createNewPost(
         userId: string | undefined,
-        postData: { description: string }
+        postData: { description: string; imagePublicIds: string[] }
     ): Promise<Post>;
+    abstract deletePost(postId: string): Promise<string>;
 }
 
 @injectable()
 export class PostsService implements AbstractPostsService {
     private databaseId = process.env.APPWRITE_DB_ID!;
     async createNewPost(
-        userId: string | undefined,
-        postData: { description: string }
+        userId: string,
+        postData: { description: string; imagePublicIds: string[] }
     ): Promise<Post> {
-        if (userId == null) {
-            throw new TRPCError({
-                code: 'UNAUTHORIZED',
-                message:
-                    'User has not been authenticated and cannot perform the action.',
-            });
-        }
         const databases = container.get(AbstractDatabaseClient).getClient();
         return await databases.createDocument(
             this.databaseId,
@@ -36,7 +29,17 @@ export class PostsService implements AbstractPostsService {
             {
                 userId: userId,
                 description: postData.description,
+                imagePublicIds: postData.imagePublicIds,
             }
+        );
+    }
+
+    async deletePost(postId: string): Promise<string> {
+        const databases = container.get(AbstractDatabaseClient).getClient();
+        return await databases.deleteDocument(
+            this.databaseId,
+            POSTS_COLLECTION_ID,
+            postId
         );
     }
 
