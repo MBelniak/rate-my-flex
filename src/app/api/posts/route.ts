@@ -14,12 +14,14 @@ const withLogging = (
 ) => {
     return async (request: NextRequest, response: NextResponse) => {
         const logger = Logger.getLogger();
-        logger.info(`Received POST request /api/posts`);
+        logger.info(`Received POST request /api/posts`, request.headers);
         return handler(request, response);
     };
 };
 
 async function createPost(request: NextRequest) {
+    const logger = Logger.getLogger();
+
     try {
         const user = await currentUser();
         if (!user) {
@@ -27,7 +29,6 @@ async function createPost(request: NextRequest) {
                 status: 401,
             });
         }
-        const logger = Logger.getLogger();
         const formData = await request.formData();
         const files = formData.getAll('file') as File[] | null;
         if (files?.length) {
@@ -55,7 +56,8 @@ async function createPost(request: NextRequest) {
                     'Uploaded image with public_id: ' + result.public_id
                 );
             });
-        } catch (e) {
+        } catch (error) {
+            logger.error('Server error while saving images', error);
             return new NextResponse('Server error while saving images', {
                 status: 500,
             });
@@ -68,6 +70,7 @@ async function createPost(request: NextRequest) {
         });
         logger.info(`Saved post with id ${post.$id}`, post);
     } catch (error) {
+        logger.error('Server error while creating new post', error);
         return new NextResponse('Server error while creating new post', {
             status: 500,
         });
