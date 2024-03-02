@@ -24,7 +24,7 @@ export default function Navbar() {
     const pathName = usePathname();
 
     return (
-        <NavbarContainer disableAnimation isBordered>
+        <NavbarContainer isBordered>
             <NavbarContent className="sm:hidden" justify="start">
                 <NavbarMenuToggle />
             </NavbarContent>
