@@ -61,4 +61,11 @@ const initializeCollections = async (
         undefined,
         true
     );
+    await databases.createStringAttribute(
+        database.$id,
+        postsCollection.$id,
+        'placeId',
+        255,
+        false
+    );
 };
