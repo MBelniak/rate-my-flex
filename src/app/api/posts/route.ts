@@ -42,6 +42,8 @@ async function createPost(request: NextRequest) {
 
         const description = formData.get('description') as string | null;
         logger.info('Post description: ' + description);
+        const placeId = formData.get('placeId') as string | null;
+        logger.info('Flex location: ' + placeId);
 
         const postsService = container.get(AbstractPostsService);
 
@@ -62,7 +64,9 @@ async function createPost(request: NextRequest) {
                 status: 500,
             });
         }
-        const post = await postsService.createNewPost(user.id, {
+        const post = await postsService.createNewPost({
+            placeId,
+            userId: user.id,
             description: description ?? '',
             imagePublicIds: cloudinaryUploadResult.map(
                 (result) => result.public_id

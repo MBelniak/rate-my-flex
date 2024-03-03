@@ -2,10 +2,16 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Button } from '@nextui-org/react';
 import { FileUpload } from 'primereact/fileupload';
+import { SearchPlace } from '@/app/home/(components)/SearchPlace';
+import PlaceResult = google.maps.places.PlaceResult;
 
 export const NewPostForm: React.FC = () => {
     const [description, setDescription] = useState<string>('');
     const fileUploadRef = useRef<FileUpload | null>(null);
+    const [selectedPlace, setSelectedPlace] = useState<PlaceResult | undefined>(
+        undefined
+    );
+
     const submitForm = useCallback(async () => {
         const images = fileUploadRef.current?.getFiles();
         const data = new FormData();
@@ -16,11 +22,14 @@ export const NewPostForm: React.FC = () => {
                 data.append('file', image);
             });
         }
+        if (selectedPlace && selectedPlace.place_id) {
+            data.append('placeId', selectedPlace.place_id);
+        }
         await fetch('/api/posts', {
             method: 'POST',
             body: data,
         });
-    }, [description]);
+    }, [description, selectedPlace]);
     return (
         <div>
             <h2>Upload new post</h2>
@@ -54,6 +63,8 @@ export const NewPostForm: React.FC = () => {
                         ref={fileUploadRef}
                     />
                 </div>
+                <label htmlFor={'images'}>Where did you flex?</label>
+                <SearchPlace setSelectedPlace={setSelectedPlace} />
                 <Button onClick={submitForm}>Add new flex!</Button>
             </form>
         </div>
