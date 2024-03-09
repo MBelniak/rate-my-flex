@@ -47,7 +47,6 @@ export class PostsService implements AbstractPostsService {
                 [Query.equal('userId', userId), Query.orderDesc('$createdAt')]
             )
         ).documents;
-        console.log(documents.length);
         return documents;
     }
 }

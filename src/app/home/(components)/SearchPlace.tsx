@@ -8,21 +8,26 @@ export const SearchPlace: React.FC<{
     const autocomplete = useRef<google.maps.places.Autocomplete | null>(null);
 
     useEffect(() => {
-        const options: google.maps.places.AutocompleteOptions = {
-            componentRestrictions: { country: 'pl' },
-            fields: ['place_id', 'name'],
-            strictBounds: false,
-        };
+        (async () => {
+            const { Autocomplete } = (await google.maps.importLibrary(
+                'places'
+            )) as google.maps.PlacesLibrary;
+            const options: google.maps.places.AutocompleteOptions = {
+                componentRestrictions: { country: 'pl' },
+                fields: ['place_id', 'name'],
+                strictBounds: false,
+            };
 
-        if (inputRef.current) {
-            autocomplete.current = new google.maps.places.Autocomplete(
-                inputRef.current,
-                options
-            );
-            autocomplete.current?.addListener('place_changed', () => {
-                setSelectedPlace(autocomplete.current?.getPlace());
-            });
-        }
+            if (inputRef.current) {
+                autocomplete.current = new Autocomplete(
+                    inputRef.current,
+                    options
+                );
+                autocomplete.current?.addListener('place_changed', () => {
+                    setSelectedPlace(autocomplete.current?.getPlace());
+                });
+            }
+        })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

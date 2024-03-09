@@ -34,38 +34,42 @@ export const NewPostForm: React.FC = () => {
         <div>
             <h2>Upload new post</h2>
             <form>
-                <div className={'grid [grid-template-columns:1fr_4fr] gap-4'}>
-                    <label htmlFor={'description'}>Post description</label>
-                    <input
-                        id={'description'}
-                        name={'description'}
-                        placeholder={'Add your description here...'}
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                    <label htmlFor={'images'}>Images</label>
-                    <FileUpload
-                        name="images"
-                        multiple
-                        accept="image/*"
-                        maxFileSize={1000000}
-                        emptyTemplate={
-                            <p className="m-0">
-                                Drag and drop files to here to upload.
-                            </p>
-                        }
-                        cancelOptions={{
-                            className: 'hidden',
-                        }}
-                        uploadOptions={{
-                            className: 'hidden',
-                        }}
-                        ref={fileUploadRef}
-                    />
+                <div className={'flex flex-col gap-4 py-2'}>
+                    <div
+                        className={'grid [grid-template-columns:1fr_4fr] gap-4'}
+                    >
+                        <label htmlFor={'description'}>Post description</label>
+                        <input
+                            id={'description'}
+                            name={'description'}
+                            placeholder={'Add your description here...'}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                        <label htmlFor={'images'}>Images</label>
+                        <FileUpload
+                            name="images"
+                            multiple
+                            accept="image/*"
+                            maxFileSize={1000000}
+                            emptyTemplate={
+                                <p className="m-0">
+                                    Drag and drop files to here to upload.
+                                </p>
+                            }
+                            cancelOptions={{
+                                className: 'hidden',
+                            }}
+                            uploadOptions={{
+                                className: 'hidden',
+                            }}
+                            ref={fileUploadRef}
+                        />
+                    </div>
+                    <label htmlFor={'images'}>Where did you flex?</label>
+                    <SearchPlace setSelectedPlace={setSelectedPlace} />
+                    <Button onClick={submitForm}>Add new flex!</Button>
                 </div>
-                <label htmlFor={'images'}>Where did you flex?</label>
-                <SearchPlace setSelectedPlace={setSelectedPlace} />
-                <Button onClick={submitForm}>Add new flex!</Button>
             </form>
         </div>
     );
