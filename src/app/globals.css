@@ -1,30 +1,29 @@
+@import '@fontsource/barlow';
+@import '@fontsource/righteous';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --foreground-rgb: 0, 0, 0;
-    --primary2: #ffee32;
-    --primary2-hover: #ffee32;
-    --secondary: #673ddb;
-    --secondary2: #66529c;
-    --desert: #868252;
-    --background2: #33322c;
-    --card: #4d485c;
+    font-family: "Barlow", sans-serif;
+    --font-family: "Barlow", sans-serif;
+    --clr-text: #fff;
+    --clr-text-on-primary: #000;
+    --clr-primary: #ffee32;
+    --clr-primary-dimmed: rgba(255, 238, 50, 0.7);
+    --clr-secondary: #874DFB;
+    --clr-secondary-dimmed: #66529C;
+    --clr-background-page: #33322c;
+    --clr-background-card: #4d485c;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-rgb: 255, 255, 255;
-    }
-}
-
-body {
-    color: rgb(var(--foreground-rgb));
-}
 
 @layer utilities {
     .text-balance {
         text-wrap: balance;
     }
+}
+
+button.font-normal {
+    font-weight: 600;
 }

@@ -48,7 +48,10 @@ export default function Navbar() {
 
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <UserButton />
+                    <UserButton
+                        userProfileMode={'navigation'}
+                        userProfileUrl="/account"
+                    />
                 </NavbarItem>
             </NavbarContent>
 

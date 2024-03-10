@@ -1,0 +1,13 @@
+section {
+    .cl-rootBox,
+    .cl-card {
+        width: 100%;
+    }
+    .cl-formButtonReset {
+        color: var(--clr-primary);
+    }
+    .cl-formButtonPrimary, .cl-formButtonReset {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+    }
+}

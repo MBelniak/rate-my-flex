@@ -1,13 +1,10 @@
+import 'primereact/resources/themes/lara-dark-blue/theme.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-import { ClerkProvider } from '@clerk/nextjs';
-import { dark } from '@clerk/themes';
 import '../styles/clerk.scss';
 import { initDatabase } from '@/database/appwrite';
 import Script from 'next/script';
-
-const inter = Inter({ subsets: ['latin'] });
+import { ClientProviders } from '@/app/clientProviders';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -26,11 +23,7 @@ export default async function RootLayout({
     await initDatabase(process.env.APPWRITE_DB_ID);
 
     return (
-        <ClerkProvider
-            appearance={{
-                baseTheme: dark,
-            }}
-        >
+        <ClientProviders>
             <html lang="en">
                 <head>
                     <Script id="google-maps-api">
@@ -42,12 +35,10 @@ export default async function RootLayout({
                         `}
                     </Script>
                 </head>
-                <body
-                    className={`${inter.className} dark bg-background2 min-h-[100vh]`}
-                >
+                <body className={`dark text-white bg-page min-h-[100vh]`}>
                     {children}
                 </body>
             </html>
-        </ClerkProvider>
+        </ClientProviders>
     );
 }

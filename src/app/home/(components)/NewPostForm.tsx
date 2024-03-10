@@ -68,7 +68,14 @@ export const NewPostForm: React.FC = () => {
                     </div>
                     <label htmlFor={'images'}>Where did you flex?</label>
                     <SearchPlace setSelectedPlace={setSelectedPlace} />
-                    <Button onClick={submitForm}>Add new flex!</Button>
+                    <Button
+                        color={'primary'}
+                        variant={'solid'}
+                        className={'font-[600] uppercase'}
+                        onClick={submitForm}
+                    >
+                        Add new flex!
+                    </Button>
                 </div>
             </form>
         </div>
