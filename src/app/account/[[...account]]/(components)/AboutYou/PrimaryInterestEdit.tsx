@@ -1,9 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Section } from '@/app/account/[[...account]]/(components)/Section';
 import { Autocomplete, Box, Chip, TextField } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons/faEdit';
-import { Button } from '@nextui-org/react';
+import { ControlButtons } from './ControlButtons';
 
 type Option = {
     label: string;
@@ -31,6 +28,9 @@ export const PrimaryInterestEdit: React.FC<{
         <div className={'flex flex-col gap-4'}>
             <Autocomplete
                 multiple
+                sx={{
+                    maxWidth: '30rem',
+                }}
                 id="tags-filled"
                 options={options
                     .map((option) => option.value)
@@ -42,8 +42,9 @@ export const PrimaryInterestEdit: React.FC<{
                     )}
                 renderOption={(props, option) => {
                     return (
-                        <Box {...props}>
-                            {options.find((opt) => opt.value === option).label}
+                        <Box component={'li'} {...props}>
+                            {options.find((opt) => opt.value === option)
+                                ?.label ?? ''}
                         </Box>
                     );
                 }}
@@ -90,23 +91,10 @@ export const PrimaryInterestEdit: React.FC<{
                     />
                 )}
             />
-            <div className={'flex flex-row-reverse gap-2 content-end w-full'}>
-                <Button
-                    color="primary"
-                    variant={'solid'}
-                    className={'uppercase'}
-                >
-                    Save
-                </Button>
-                <Button
-                    color="primary"
-                    variant={'light'}
-                    className={'uppercase'}
-                    onClick={() => setIsEditing(false)}
-                >
-                    Cancel
-                </Button>
-            </div>
+            <ControlButtons
+                onSave={(): void => setIsEditing(false)}
+                onCancel={(): void => setIsEditing(false)}
+            />
         </div>
     );
 };

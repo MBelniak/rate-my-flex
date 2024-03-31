@@ -21,7 +21,7 @@ const config: Config = {
                 primary: palette.primary,
                 primaryDimmed: palette.primaryDimmed,
                 primaryDimmedHover: palette.primaryDimmedHover,
-                secondary: palette.secondary,
+                secondary: palette.primary,
                 secondaryDimmed: palette.secondaryDimmed,
                 page: palette.backgroundPage,
                 card: palette.backgroundCard,

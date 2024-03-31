@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons/faDumbbell';
 
 const UserProfilePage = () => (
-    <section className={'py-4'}>
+    <section className={'p-4'}>
         <UserProfile path="/account" routing="path">
             <UserProfile.Page
                 label="About you"

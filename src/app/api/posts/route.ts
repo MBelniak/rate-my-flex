@@ -3,8 +3,8 @@ import container from '@/iocContainer';
 import { AbstractPostsService } from '@/service/posts/PostsService';
 import { uploadFileToCloudinary } from '@/service/cloudinary';
 import { currentUser } from '@clerk/nextjs';
-import { Logger } from '@/server/Logger';
 import prettyBytes from 'pretty-bytes';
+import { Logger } from 'winston';
 
 const withLogging = (
     handler: (
@@ -13,14 +13,29 @@ const withLogging = (
     ) => Promise<NextResponse>
 ) => {
     return async (request: NextRequest, response: NextResponse) => {
-        const logger = Logger.getLogger();
+        const logger = container.get(Logger);
         logger.info(`Received POST request /api/posts`, request.headers);
         return handler(request, response);
     };
 };
 
+const getFormFiles = (formData: FormData): File[] => {
+    const logger = container.get(Logger);
+
+    const files = formData.getAll('file') as File[] | null;
+    if (files?.length) {
+        logger.info(
+            `Received ${files.length} files`,
+            Object.fromEntries(
+                files.map((file) => [file.name, prettyBytes(file.size)])
+            )
+        );
+    }
+    return files ?? [];
+};
+
 async function createPost(request: NextRequest) {
-    const logger = Logger.getLogger();
+    const logger = container.get(Logger);
 
     try {
         const user = await currentUser();
@@ -30,15 +45,7 @@ async function createPost(request: NextRequest) {
             });
         }
         const formData = await request.formData();
-        const files = formData.getAll('file') as File[] | null;
-        if (files?.length) {
-            logger.info(
-                `Received ${files.length} files`,
-                Object.fromEntries(
-                    files.map((file) => [file.name, prettyBytes(file.size)])
-                )
-            );
-        }
+        const files = getFormFiles(formData);
 
         const description = formData.get('description') as string | null;
         logger.info('Post description: ' + description);
@@ -50,7 +57,7 @@ async function createPost(request: NextRequest) {
         let cloudinaryUploadResult;
         try {
             cloudinaryUploadResult = await Promise.all(
-                (files ?? []).map(uploadFileToCloudinary)
+                files.map(uploadFileToCloudinary)
             );
 
             cloudinaryUploadResult.forEach((result) => {

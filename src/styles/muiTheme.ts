@@ -22,13 +22,22 @@ export const muiTheme = createTheme({
                 root: 'padding: 0;',
                 inputRoot: {
                     padding: 0,
+                    fontSize: '0.8125rem',
                 },
                 option: {
                     '&:hover': {
                         backgroundColor: 'rgba(102, 82, 156, 0.4)',
                     },
+                    fontSize: '0.8125rem',
                 },
                 padding: 0,
+            },
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    fontSize: '0.8125rem',
+                },
             },
         },
         MuiFilledInput: {
@@ -41,12 +50,16 @@ export const muiTheme = createTheme({
                 root: {
                     backgroundColor: 'transparent',
                     padding: 0,
+                    fontSize: '0.8125rem',
                 },
             },
         },
         MuiInputBase: {
             styleOverrides: {
-                root: 'padding: 0;',
+                root: {
+                    padding: 0,
+                    fontSize: '0.8125rem',
+                },
             },
         },
     },

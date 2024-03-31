@@ -1,14 +1,11 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Section } from '@/app/account/[[...account]]/(components)/Section';
 import {
     FormControl,
     MenuItem,
     Select,
     SelectChangeEvent,
 } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons/faEdit';
-import { Button } from '@nextui-org/react';
+import { ControlButtons } from '@/app/account/[[...account]]/(components)/AboutYou/ControlButtons';
 
 const options = [
     {
@@ -43,23 +40,10 @@ export const AmateurOrProEdit: React.FC<{
                     ))}
                 </Select>
             </FormControl>
-            <div className={'flex flex-row-reverse gap-2 content-end w-full'}>
-                <Button
-                    color="primary"
-                    variant={'solid'}
-                    className={'uppercase'}
-                >
-                    Save
-                </Button>
-                <Button
-                    color="primary"
-                    variant={'light'}
-                    className={'uppercase'}
-                    onClick={() => setIsEditing(false)}
-                >
-                    Cancel
-                </Button>
-            </div>
+            <ControlButtons
+                onCancel={(): void => setIsEditing(false)}
+                onSave={(): void => setIsEditing(false)}
+            />
         </div>
     );
 };
