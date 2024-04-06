@@ -14,8 +14,8 @@ export default async function Home() {
     return (
         <div className="flex flex-col justify-center items-center p-8">
             <h1 className={'font-sans'}>Rate My Flex</h1>
-            <PostsList userId={user.id} />
             <NewPostForm />
+            <PostsList userId={user.id} />
         </div>
     );
 }
