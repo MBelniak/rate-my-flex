@@ -10,7 +10,9 @@ export const ControlButtons: React.FC<{
             <Button
                 color="primary"
                 variant={'solid'}
-                className={'uppercase'}
+                className={
+                    'uppercase data-[hover=true]:bg-primaryHover data-[hover=true]:opacity-100'
+                }
                 onClick={onSave}
             >
                 Save
@@ -18,7 +20,9 @@ export const ControlButtons: React.FC<{
             <Button
                 color="primary"
                 variant={'light'}
-                className={'uppercase data-[hover=true]:bg-primaryDimmedHover'}
+                className={
+                    'uppercase data-[hover=true]:bg-primaryBackgroundHover'
+                }
                 onClick={onCancel}
             >
                 Cancel

@@ -6,7 +6,14 @@
 
   &:hover,
   &:focus {
-    background-color: var(--clr-primary-dimmed);
+    background-color: var(--clr-primary-hover);
+  }
+}
+
+.cl-formButtonReset {
+  &:hover,
+  &:focus {
+    background-color: var(--clr-primary-background-hover);
   }
 }
 
@@ -14,11 +21,6 @@
   color: var(--clr-primary);
 
   &:hover {
-    color: var(--clr-primary-dimmed);
+    color: var(--clr-primary-hover);
   }
-}
-
-.cl-badge {
-  color: var(--clr-secondary);
-  background-color: #000;
 }

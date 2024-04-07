@@ -19,17 +19,19 @@ const config: Config = {
             backgroundColor: {
                 default: palette.primary,
                 primary: palette.primary,
-                primaryDimmed: palette.primaryDimmed,
-                primaryDimmedHover: palette.primaryDimmedHover,
-                secondary: palette.primary,
-                secondaryDimmed: palette.secondaryDimmed,
+                primaryHover: palette.primaryHover,
+                primaryBackgroundHover: palette.primaryBackgroundHover,
+                secondary: palette.secondary,
+                secondaryHover: palette.secondaryHover,
+                secondaryBackgroundHover: palette.secondaryBackgroundHover,
                 page: palette.backgroundPage,
                 card: palette.backgroundCard,
             },
             textColor: {
                 default: palette.text,
                 onPrimary: palette.textOnPrimary,
-                accent: palette.primaryDimmed,
+                secondary: palette.secondary,
+                accent: palette.primaryHover,
             },
         },
     },
@@ -44,10 +46,14 @@ const config: Config = {
             themes: {
                 dark: {
                     colors: {
-                        focus: {
-                            foreground: palette.primaryDimmed,
-                            DEFAULT: palette.primaryDimmed,
+                        primary: {
+                            DEFAULT: palette.darkPrimary,
+                            foreground: palette.darkTextOnPrimary,
                         },
+                    },
+                },
+                light: {
+                    colors: {
                         primary: {
                             DEFAULT: palette.primary,
                             foreground: palette.textOnPrimary,

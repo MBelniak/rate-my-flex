@@ -1,10 +1,10 @@
-import 'primereact/resources/themes/lara-dark-blue/theme.css';
+import 'primereact/resources/themes/lara-light-green/theme.css';
 import type { Metadata } from 'next';
 import './globals.css';
 import '../styles/clerk.scss';
 import { initDatabase } from '@/database/appwrite';
 import Script from 'next/script';
-import { ClientProviders } from '@/app/clientProviders';
+import { ClientProviders, NextUiProvider } from '@/app/clientProviders';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -35,8 +35,8 @@ export default async function RootLayout({
                         `}
                     </Script>
                 </head>
-                <body className={`dark text-white bg-page min-h-[100vh]`}>
-                    {children}
+                <body className={`light bg-page min-h-[100vh]`}>
+                    <NextUiProvider>{children}</NextUiProvider>
                 </body>
             </html>
         </ClientProviders>

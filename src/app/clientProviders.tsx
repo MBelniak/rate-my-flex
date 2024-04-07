@@ -1,20 +1,23 @@
 'use client';
 import React, { PropsWithChildren } from 'react';
-import { dark } from '@clerk/themes';
 import { ClerkProvider } from '@clerk/nextjs';
 import { muiTheme } from '@/styles/muiTheme';
 import { ThemeProvider } from '@mui/material';
 import { palette } from '../../palette';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
+import { NextUIProvider } from '@nextui-org/react';
 
 export const ClientProviders: React.FC<PropsWithChildren> = ({ children }) => {
     return (
         <ClerkProvider
             appearance={{
-                baseTheme: dark,
                 variables: {
-                    colorPrimary: palette.primaryDimmed,
+                    colorPrimary: palette.secondary,
+                    colorText: palette.text,
+                },
+                elements: {
+                    card: 'bg-card',
                 },
             }}
         >
@@ -26,3 +29,7 @@ export const ClientProviders: React.FC<PropsWithChildren> = ({ children }) => {
         </ClerkProvider>
     );
 };
+
+export function NextUiProvider({ children }: { children: React.ReactNode }) {
+    return <NextUIProvider>{children}</NextUIProvider>;
+}

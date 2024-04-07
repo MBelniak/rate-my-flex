@@ -1,19 +1,19 @@
 import { createTheme } from '@mui/material';
+import { palette } from '../../palette';
 
 export const muiTheme = createTheme({
     palette: {
-        mode: 'dark',
+        mode: 'light',
         primary: {
-            main: '#fff',
+            main: palette.primary,
         },
         secondary: {
-            main: '#673DDB',
-            dimmed: '#66529C',
+            main: palette.secondary,
         },
     },
     typography: {
         body1: {
-            color: 'white',
+            color: palette.text,
         },
     },
     components: {
@@ -25,9 +25,6 @@ export const muiTheme = createTheme({
                     fontSize: '0.8125rem',
                 },
                 option: {
-                    '&:hover': {
-                        backgroundColor: 'rgba(102, 82, 156, 0.4)',
-                    },
                     fontSize: '0.8125rem',
                 },
                 padding: 0,

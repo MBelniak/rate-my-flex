@@ -7,16 +7,33 @@
 :root {
     font-family: "Barlow", sans-serif;
     --font-family: "Barlow", sans-serif;
-    --clr-text: #fff;
+    --clr-text: #000;
     --clr-text-on-primary: #000;
-    --clr-primary: #ffee32;
-    --clr-primary-dimmed: rgba(255, 238, 50, 0.7);
-    --clr-secondary: #874DFB;
-    --clr-secondary-dimmed: #66529C;
-    --clr-background-page: #33322c;
-    --clr-background-card: #4d485c;
+    --clr-primary: hsl(146, 57%, 54%);
+    --clr-primary-hover: hsl(146, 57%, 40%);
+    --clr-primary-background-hover: hsl(146, 57%, 95%);
+    --clr-secondary: hsl(340, 58%, 54%);
+    --clr-secondary-hover: hsl(340, 58%, 44%);
+    --clr-secondary-background-hover: hsl(340, 58%, 95%);
+    --clr-background-page: hsl(146, 79%, 92%);
+    --clr-background-card: #fff;
 }
 
+
+/* TODO dark mode */
+/*@media (prefers-color-scheme: dark) {*/
+/*    :root {*/
+/*        --clr-text: #fff;*/
+/*        --clr-text-on-primary: #fff;*/
+/*        --clr-primary: hsl(146, 57%, 25%);*/
+/*        --clr-primary-dimmed: hsl(146, 57%, 20%);*/
+/*        --clr-background-hover: hsl(146, 57%, 10%);*/
+/*        --clr-secondary: hsl(340, 58%, 54%);*/
+/*        --clr-secondary-dimmed: hsl(340, 58%, 44%);*/
+/*        --clr-background-page: hsl(146, 57%, 15%);*/
+/*        --clr-background-card: hsl(146, 57%, 5%);*/
+/*    }*/
+/*}*/
 
 @layer utilities {
     .text-balance {
