@@ -1,5 +1,6 @@
 import { nextui } from '@nextui-org/react';
 import type { Config } from 'tailwindcss';
+import { palette } from './palette';
 
 const config: Config = {
     content: [
@@ -10,21 +11,57 @@ const config: Config = {
     ],
     theme: {
         fontFamily: {
-            sans: ['Righteous', 'sans-serif'],
-            sans2: ['Barlow', 'sans-serif'],
+            logo: ['"Righteous"', 'sans-serif'],
+            body: ['"Barlow"', 'sans-serif'],
+            sans: ['"Barlow"', 'sans-serif'],
         },
         extend: {
             backgroundColor: {
-                primary2: '#FFEE32',
-                secondary: '#673DDB',
-                secondary2: '#66529C',
-                desert: '#868252',
-                background2: '#33322C',
-                card: '#4D485C',
+                default: palette.primary,
+                primary: palette.primary,
+                primaryHover: palette.primaryHover,
+                primaryBackgroundHover: palette.primaryBackgroundHover,
+                secondary: palette.secondary,
+                secondaryHover: palette.secondaryHover,
+                secondaryBackgroundHover: palette.secondaryBackgroundHover,
+                page: palette.backgroundPage,
+                card: palette.backgroundCard,
+            },
+            textColor: {
+                default: palette.text,
+                onPrimary: palette.textOnPrimary,
+                secondary: palette.secondary,
+                accent: palette.primaryHover,
             },
         },
     },
     darkMode: 'class',
-    plugins: [nextui()],
+    plugins: [
+        nextui({
+            layout: {
+                radius: {
+                    medium: '0.375rem',
+                },
+            },
+            themes: {
+                dark: {
+                    colors: {
+                        primary: {
+                            DEFAULT: palette.darkPrimary,
+                            foreground: palette.darkTextOnPrimary,
+                        },
+                    },
+                },
+                light: {
+                    colors: {
+                        primary: {
+                            DEFAULT: palette.primary,
+                            foreground: palette.textOnPrimary,
+                        },
+                    },
+                },
+            },
+        }),
+    ],
 };
 export default config;

@@ -8,8 +8,9 @@ export const PostItemImage: React.FC<{ publicId: string }> = ({ publicId }) => {
             key={publicId}
             alt={'someone flexing'}
             src={publicId}
-            width={500}
+            width={600}
             height={700}
+            className="object-cover"
         />
     );
 };

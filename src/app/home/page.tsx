@@ -2,7 +2,6 @@ import { currentUser } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 import { PostsList } from '@/app/home/(components)/PostsList';
 import { NewPostForm } from '@/app/home/(components)/NewPostForm';
-import 'primereact/resources/themes/lara-dark-blue/theme.css';
 
 export default async function Home() {
     const user = await currentUser();
@@ -13,9 +12,9 @@ export default async function Home() {
 
     return (
         <div className="flex flex-col justify-center items-center p-8">
-            <h1 className={'font-sans'}>Rate My Flex</h1>
-            <PostsList userId={user.id} />
+            <h1 className={'font-logo'}>Rate My Flex</h1>
             <NewPostForm />
+            <PostsList user={user} />
         </div>
     );
 }

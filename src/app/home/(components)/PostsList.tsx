@@ -2,21 +2,26 @@ import React from 'react';
 import { PostItem } from '@/app/home/(components)/PostItem';
 import container from '@/iocContainer';
 import { AbstractPostsService } from '@/service/posts/PostsService';
+import { Box } from '@mui/material';
+import { User } from '@clerk/backend';
 
-export async function PostsList({ userId }: { userId: string }) {
+export async function PostsList({ user }: { user: User }) {
     const postsService = container.get(AbstractPostsService);
-    const posts = await postsService.getPostsByUserId(userId);
+    const posts = await postsService.getPostsByUserId(user.id);
 
     return (
-        <section>
-            Posts:{' '}
-            <ul>
-                {posts.map((post) => (
-                    <li key={JSON.stringify(post)}>
-                        <PostItem post={post} />
-                    </li>
-                ))}
-            </ul>
+        <section className={'w-full px-8'}>
+            <Box className={'flex flex-col gap-4 items-center'}>
+                {posts
+                    .filter((post) => post.imagePublicIds.length > 0)
+                    .map((post) => (
+                        <PostItem
+                            key={JSON.stringify(post)}
+                            post={post}
+                            author={user}
+                        />
+                    ))}
+            </Box>
         </section>
     );
 }

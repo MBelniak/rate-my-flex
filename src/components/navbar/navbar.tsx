@@ -24,7 +24,7 @@ export default function Navbar() {
     const pathName = usePathname();
 
     return (
-        <NavbarContainer isBordered>
+        <NavbarContainer isBordered className={'text-white bg-neutral-950/40'}>
             <NavbarContent className="sm:hidden" justify="start">
                 <NavbarMenuToggle />
             </NavbarContent>
@@ -48,7 +48,10 @@ export default function Navbar() {
 
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <UserButton />
+                    <UserButton
+                        userProfileMode={'navigation'}
+                        userProfileUrl="/account"
+                    />
                 </NavbarItem>
             </NavbarContent>
 

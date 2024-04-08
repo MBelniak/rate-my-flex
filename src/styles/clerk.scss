@@ -1,13 +1,26 @@
-@import "@fontsource/righteous";
-
 .cl-formButtonPrimary {
-  font-size: 14px;
-  text-transform: none;
-  background-color: #611bbd;
+  background-color: var(--clr-primary);
+  color: var(--clr-text-on-primary);
+  text-transform: uppercase;
+
+
+  &:hover,
+  &:focus {
+    background-color: var(--clr-primary-hover);
+  }
 }
 
-.cl-formButtonPrimary:hover,
-.cl-formButtonPrimary:focus,
-.cl-formButtonPrimary:active {
-  background-color: #49247a;
+.cl-formButtonReset {
+  &:hover,
+  &:focus {
+    background-color: var(--clr-primary-background-hover);
+  }
+}
+
+.cl-footerActionLink {
+  color: var(--clr-primary);
+
+  &:hover {
+    color: var(--clr-primary-hover);
+  }
 }
