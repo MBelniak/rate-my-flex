@@ -27,6 +27,7 @@ export const muiTheme = createTheme({
                 option: {
                     fontSize: '0.8125rem',
                 },
+                // @ts-ignore
                 padding: 0,
             },
         },
