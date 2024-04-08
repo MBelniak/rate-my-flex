@@ -5,19 +5,7 @@ import { uploadFileToCloudinary } from '@/service/cloudinary';
 import { currentUser } from '@clerk/nextjs';
 import prettyBytes from 'pretty-bytes';
 import { Logger } from 'winston';
-
-const withLogging = (
-    handler: (
-        request: NextRequest,
-        response: NextResponse
-    ) => Promise<NextResponse>
-) => {
-    return async (request: NextRequest, response: NextResponse) => {
-        const logger = container.get(Logger);
-        logger.info(`Received POST request /api/posts`, request.headers);
-        return handler(request, response);
-    };
-};
+import { botDMiddleware, withLogging } from '@/app/api/(utils)/middlewares';
 
 const getFormFiles = (formData: FormData): File[] => {
     const logger = container.get(Logger);
@@ -89,4 +77,4 @@ async function createPost(request: NextRequest) {
     return new NextResponse(null, { status: 200 });
 }
 
-export const POST = withLogging(createPost);
+export const POST = withLogging(botDMiddleware(createPost));

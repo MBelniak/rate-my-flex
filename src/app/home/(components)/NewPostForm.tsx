@@ -4,6 +4,7 @@ import { Button } from '@nextui-org/react';
 import { FileUpload } from 'primereact/fileupload';
 import { SearchPlace } from '@/app/home/(components)/SearchPlace';
 import PlaceResult = google.maps.places.PlaceResult;
+import axios from 'axios';
 
 export const NewPostForm: React.FC = () => {
     const [description, setDescription] = useState<string>('');
@@ -25,10 +26,7 @@ export const NewPostForm: React.FC = () => {
         if (selectedPlace && selectedPlace.place_id) {
             data.append('placeId', selectedPlace.place_id);
         }
-        await fetch('/api/posts', {
-            method: 'POST',
-            body: data,
-        });
+        await axios.post('/api/posts', data);
     }, [description, selectedPlace]);
     return (
         <div>
