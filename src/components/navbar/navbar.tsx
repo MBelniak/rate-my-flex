@@ -13,6 +13,9 @@ import {
 } from '@nextui-org/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import UploadModal from '@/app/home/(components)/UploadModal';
+import { Box, IconButton, Tooltip } from '@mui/material';
+import { Add } from '@mui/icons-material';
 
 const menuItems = [
     { label: 'Posts', href: '/' },
@@ -23,8 +26,18 @@ const menuItems = [
 export default function Navbar() {
     const pathName = usePathname();
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleUploadModalOpen = (): void => {
+        setOpen(true)
+    }
+
+    const handleUploadModalClose = (): void => setOpen(false)
+
+
     return (
         <NavbarContainer isBordered className={'text-white bg-neutral-950/40'}>
+            <UploadModal close={handleUploadModalClose} open={open} />
             <NavbarContent className="sm:hidden" justify="start">
                 <NavbarMenuToggle />
             </NavbarContent>
@@ -48,10 +61,17 @@ export default function Navbar() {
 
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <UserButton
-                        userProfileMode={'navigation'}
-                        userProfileUrl="/account"
-                    />
+                    <Box sx={{display: 'flex', gap: 2, alignItems: 'center'}}>
+                        <Tooltip title='Upload new post'>
+                            <IconButton onClick={handleUploadModalOpen} aria-label="upload">
+                                <Add />
+                            </IconButton>
+                        </Tooltip>
+                        <UserButton
+                            userProfileMode={'navigation'}
+                            userProfileUrl="/account"
+                        />
+                    </Box>
                 </NavbarItem>
             </NavbarContent>
 

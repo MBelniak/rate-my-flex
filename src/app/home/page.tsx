@@ -2,6 +2,7 @@ import { currentUser } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 import { PostsList } from '@/app/home/(components)/PostsList';
 import { NewPostForm } from '@/app/home/(components)/NewPostForm';
+import { Box, Typography } from '@mui/material';
 
 export default async function Home() {
     const user = await currentUser();
@@ -12,8 +13,11 @@ export default async function Home() {
 
     return (
         <div className="flex flex-col justify-center items-center p-8">
-            <h1 className={'font-logo'}>Rate My Flex</h1>
-            <NewPostForm />
+            <Box sx={{display: 'flex', width: '100%', padding: 4}}>
+                <Typography variant="h4" component="h4">
+                    Last flexes
+                </Typography>
+            </Box>
             <PostsList user={user} />
         </div>
     );

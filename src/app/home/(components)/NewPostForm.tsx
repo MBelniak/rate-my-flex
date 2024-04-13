@@ -1,16 +1,20 @@
 'use client';
+
 import React, { useCallback, useRef, useState } from 'react';
-import { Button } from '@nextui-org/react';
+import Button from '@mui/material/Button';
 import { FileUpload } from 'primereact/fileupload';
 import { SearchPlace } from '@/app/home/(components)/SearchPlace';
 import PlaceResult = google.maps.places.PlaceResult;
+import { Box, InputLabel, OutlinedInput } from '@mui/material';
+import { AccessTime, Add } from '@mui/icons-material';
 
 export const NewPostForm: React.FC = () => {
-    const [description, setDescription] = useState<string>('');
+    const [description, setDescription] = useState('');
     const fileUploadRef = useRef<FileUpload | null>(null);
     const [selectedPlace, setSelectedPlace] = useState<PlaceResult | undefined>(
         undefined
     );
+    const [isLoading, setIsLoading] = useState(false);
 
     const submitForm = useCallback(async () => {
         const images = fileUploadRef.current?.getFiles();
@@ -25,59 +29,61 @@ export const NewPostForm: React.FC = () => {
         if (selectedPlace && selectedPlace.place_id) {
             data.append('placeId', selectedPlace.place_id);
         }
-        await fetch('/api/posts', {
-            method: 'POST',
-            body: data,
-        });
+        setIsLoading(true);
+        try {
+            await fetch('/api/posts', {
+                method: 'POST',
+                body: data,
+            });
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setIsLoading(false);
+        }
     }, [description, selectedPlace]);
     return (
-        <div>
-            <h2>Upload new post</h2>
-            <form>
-                <div className={'flex flex-col gap-4 py-2'}>
-                    <div
-                        className={'grid [grid-template-columns:1fr_4fr] gap-4'}
-                    >
-                        <label htmlFor={'description'}>Post description</label>
-                        <input
-                            id={'description'}
-                            name={'description'}
-                            placeholder={'Add your description here...'}
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                        <label htmlFor={'images'}>Images</label>
-                        <FileUpload
-                            name="images"
-                            multiple
-                            accept="image/*"
-                            maxFileSize={1000000}
-                            emptyTemplate={
-                                <p className="m-0">
-                                    Drag and drop files to here to upload.
-                                </p>
-                            }
-                            cancelOptions={{
-                                className: 'hidden',
-                            }}
-                            uploadOptions={{
-                                className: 'hidden',
-                            }}
-                            ref={fileUploadRef}
-                        />
-                    </div>
-                    <label htmlFor={'images'}>Where did you flex?</label>
+            <form className="flex flex-col gap-4 w-96">
+                        <Box sx={{display: 'flex', flexDirection: 'column', gap: 0.5}}>
+                            <InputLabel htmlFor={'description'}>Description</InputLabel>
+                            <OutlinedInput
+                                id={'description'}
+                                name={'description'}
+                                placeholder={'Description'}
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </Box>
+                        <Box sx={{display: 'flex', flexDirection: 'column', gap: 0.5}}>
+                            <InputLabel htmlFor={'images'}>Images</InputLabel>
+                            <FileUpload
+                                name="images"
+                                multiple
+                                accept="image/*"
+                                maxFileSize={1000000}
+                                emptyTemplate={
+                                    <p className="m-0">
+                                        Drag and drop files to here to upload.
+                                    </p>
+                                }
+                                cancelOptions={{
+                                    className: 'hidden',
+                                }}
+                                uploadOptions={{
+                                    className: 'hidden',
+                                }}
+                                ref={fileUploadRef}
+                            />
+                        </Box>
                     <SearchPlace setSelectedPlace={setSelectedPlace} />
                     <Button
+                        variant="contained"
                         color={'primary'}
-                        variant={'solid'}
                         className={'font-[600] uppercase'}
                         onClick={submitForm}
+                        endIcon={isLoading ? <AccessTime /> : <Add />}
                     >
                         Add new flex!
                     </Button>
-                </div>
             </form>
-        </div>
     );
 };

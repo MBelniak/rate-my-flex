@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import PlaceResult = google.maps.places.PlaceResult;
+import { Box, InputLabel, OutlinedInput } from '@mui/material';
 
 export const SearchPlace: React.FC<{
     setSelectedPlace: Dispatch<SetStateAction<PlaceResult | undefined>>;
@@ -32,8 +33,9 @@ export const SearchPlace: React.FC<{
     }, []);
 
     return (
-        <div>
-            <input type={'text'} id={'place-search-input'} ref={inputRef} />
-        </div>
+        <Box sx={{display: 'flex', flexDirection: 'column', gap: 0.5}}>
+            <InputLabel htmlFor={'place-search-input'}>Where did you flex?</InputLabel>
+            <OutlinedInput type={'text'} id={'place-search-input'} ref={inputRef} style={{zIndex: 999}} placeholder={'Search...'} />
+        </Box>
     );
 };
