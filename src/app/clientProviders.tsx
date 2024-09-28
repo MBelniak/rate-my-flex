@@ -2,30 +2,37 @@
 import React, { PropsWithChildren } from 'react';
 import { ClerkProvider } from '@clerk/nextjs';
 import { muiTheme } from '@/styles/muiTheme';
-import { ThemeProvider } from '@mui/material';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material';
 import { palette } from '../../palette';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { NextUIProvider } from '@nextui-org/react';
+import { dark } from '@clerk/themes';
+import { isDarkMode } from '@/util/media';
 
 export const ClientProviders: React.FC<PropsWithChildren> = ({ children }) => {
     return (
         <ClerkProvider
             appearance={{
+                ...(isDarkMode() ? { baseTheme: dark } : {}),
                 variables: {
-                    colorPrimary: palette.secondary,
-                    colorText: palette.text,
+                    colorPrimary: isDarkMode()
+                        ? palette.darkSecondary
+                        : palette.secondary,
+                    colorText: isDarkMode() ? palette.darkText : palette.text,
                 },
                 elements: {
-                    card: 'bg-card',
+                    card: 'bg-card dark:bg-darkCard',
                 },
             }}
         >
-            <ThemeProvider theme={muiTheme}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    {children}
-                </LocalizationProvider>
-            </ThemeProvider>
+            <StyledEngineProvider injectFirst>
+                <ThemeProvider theme={muiTheme}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        {children}
+                    </LocalizationProvider>
+                </ThemeProvider>
+            </StyledEngineProvider>
         </ClerkProvider>
     );
 };

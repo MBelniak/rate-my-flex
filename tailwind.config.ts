@@ -19,13 +19,17 @@ const config: Config = {
             backgroundColor: {
                 default: palette.primary,
                 primary: palette.primary,
+                darkPrimary: palette.darkPrimary,
                 primaryHover: palette.primaryHover,
+                darkPrimaryHover: palette.darkPrimaryHover,
                 primaryBackgroundHover: palette.primaryBackgroundHover,
                 secondary: palette.secondary,
                 secondaryHover: palette.secondaryHover,
                 secondaryBackgroundHover: palette.secondaryBackgroundHover,
                 page: palette.backgroundPage,
+                darkPage: palette.darkBackgroundPage,
                 card: palette.backgroundCard,
+                darkCard: palette.darkBackgroundCard,
             },
             textColor: {
                 default: palette.text,
@@ -33,9 +37,14 @@ const config: Config = {
                 secondary: palette.secondary,
                 accent: palette.primaryHover,
             },
+            boxShadow: {
+                card: 'rgba(0, 0, 0, 0.16) 0px 24px 48px',
+            },
         },
     },
-    darkMode: 'class',
+    //https://mui.com/material-ui/integrations/interoperability/#tailwind-css
+    important: '#__next',
+    darkMode: 'media',
     plugins: [
         nextui({
             layout: {

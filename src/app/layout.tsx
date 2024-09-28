@@ -1,6 +1,6 @@
 import 'primereact/resources/themes/lara-light-green/theme.css';
 import type { Metadata } from 'next';
-import './globals.css';
+import '../styles/globals.scss';
 import '../styles/clerk.scss';
 import { initDatabase } from '@/database/appwrite';
 import Script from 'next/script';
@@ -35,8 +35,10 @@ export default async function RootLayout({
                         `}
                     </Script>
                 </head>
-                <body className={`light bg-page min-h-[100vh]`}>
-                    <NextUiProvider>{children}</NextUiProvider>
+                <body id="__next">
+                    <div className={`bg-page dark:bg-darkPage min-h-[100vh]`}>
+                        <NextUiProvider>{children}</NextUiProvider>
+                    </div>
                 </body>
             </html>
         </ClientProviders>

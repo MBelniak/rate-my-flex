@@ -40,7 +40,7 @@ export default function Navbar() {
                     <p className="font-bold text-inherit">RATEMYFLEX</p>
                 </NavbarBrand>
                 <NavbarItem isActive={pathName === '/'}>
-                    <Link color="foreground" href="/">
+                    <Link color="foreground" href="/" className="p-2">
                         Posts
                     </Link>
                 </NavbarItem>

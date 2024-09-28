@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-export const LoginCard: React.FC<PropsWithChildren> = ({ children }) => {
+export const LoginPage: React.FC<PropsWithChildren> = ({ children }) => {
     return (
         <div
             className={
