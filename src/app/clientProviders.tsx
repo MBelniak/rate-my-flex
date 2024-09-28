@@ -27,7 +27,7 @@ export const ClientProviders: React.FC<PropsWithChildren> = ({ children }) => {
             }}
         >
             <StyledEngineProvider injectFirst>
-                <ThemeProvider theme={muiTheme}>
+                <ThemeProvider theme={muiTheme()}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         {children}
                     </LocalizationProvider>
