@@ -3,8 +3,6 @@ import { UserProfile } from '@clerk/nextjs';
 import { AboutYouPage } from '@/app/account/[[...account]]/(components)/AboutYou/AboutYouPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons/faDumbbell';
-import { palette } from '../../../../palette';
-import { isDarkMode } from '@/util/media';
 
 const UserProfilePage = () => (
     <section className={'p-4'}>
@@ -19,9 +17,8 @@ const UserProfilePage = () => (
                     },
                     profileSectionPrimaryButton: {
                         '&:hover': {
-                            backgroundColor: isDarkMode()
-                                ? palette.secondaryBackgroundHover
-                                : palette.primaryBackgroundHover,
+                            backgroundColor:
+                                'var(--clr-secondary-background-hover)',
                         },
                     },
                 },
