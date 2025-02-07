@@ -3,20 +3,37 @@ import { palette } from '../../palette';
 
 export const muiTheme = createTheme({
     palette: {
-        mode: 'light',
         primary: {
             main: palette.primary,
+            dark: palette.darkPrimary,
         },
         secondary: {
             main: palette.secondary,
+            dark: palette.darkSecondary,
         },
     },
     typography: {
+        h1: {
+            color: 'var(--clr-text)',
+            fontSize: '2rem',
+        },
         body1: {
-            color: palette.text,
+            color: 'var(--clr-text)',
         },
     },
     components: {
+        MuiButton: {
+            defaultProps: {
+                disableRipple: true,
+            },
+            styleOverrides: {
+                root: {
+                    textTransform: 'uppercase',
+                    fontWeight: 600,
+                    color: 'var(--clr-text-on-primary)',
+                },
+            },
+        },
         MuiAutocomplete: {
             styleOverrides: {
                 root: 'padding: 0;',

@@ -1,9 +1,10 @@
 'use client';
 import React, { useCallback, useRef, useState } from 'react';
-import { Button } from '@nextui-org/react';
 import { FileUpload } from 'primereact/fileupload';
 import { SearchPlace } from '@/app/home/(components)/SearchPlace';
 import PlaceResult = google.maps.places.PlaceResult;
+import { Card } from '@/components/Card';
+import { Button, Typography } from '@mui/material';
 
 export const NewPostForm: React.FC = () => {
     const [description, setDescription] = useState<string>('');
@@ -31,14 +32,16 @@ export const NewPostForm: React.FC = () => {
         });
     }, [description, selectedPlace]);
     return (
-        <div>
-            <h2>Upload new post</h2>
+        <Card sx={{ marginY: 2 }}>
+            <Typography>Upload new post</Typography>
             <form>
                 <div className={'flex flex-col gap-4 py-2'}>
                     <div
                         className={'grid [grid-template-columns:1fr_4fr] gap-4'}
                     >
-                        <label htmlFor={'description'}>Post description</label>
+                        <Typography component={'label'} htmlFor={'description'}>
+                            Post description
+                        </Typography>
                         <input
                             id={'description'}
                             name={'description'}
@@ -46,7 +49,9 @@ export const NewPostForm: React.FC = () => {
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
-                        <label htmlFor={'images'}>Images</label>
+                        <Typography component={'label'} htmlFor={'images'}>
+                            Images
+                        </Typography>
                         <FileUpload
                             name="images"
                             multiple
@@ -66,18 +71,20 @@ export const NewPostForm: React.FC = () => {
                             ref={fileUploadRef}
                         />
                     </div>
-                    <label htmlFor={'images'}>Where did you flex?</label>
+                    <Typography component={'label'} htmlFor={'images'}>
+                        Where did you flex?
+                    </Typography>
                     <SearchPlace setSelectedPlace={setSelectedPlace} />
                     <Button
-                        color={'primary'}
-                        variant={'solid'}
-                        className={'font-[600] uppercase'}
+                        className={
+                            'bg-primary dark:bg-darkPrimary hover:bg-primaryHover dark:hover:bg-darkPrimaryHover'
+                        }
                         onClick={submitForm}
                     >
                         Add new flex!
                     </Button>
                 </div>
             </form>
-        </div>
+        </Card>
     );
 };

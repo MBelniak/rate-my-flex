@@ -1,10 +1,10 @@
 import { SignIn } from '@clerk/nextjs';
-import { LoginCard } from '@/components/LoginCard';
+import { LoginPage } from '@/components/LoginPage';
 
 export default function Page() {
     return (
-        <LoginCard>
+        <LoginPage>
             <SignIn />
-        </LoginCard>
+        </LoginPage>
     );
 }
