@@ -10,7 +10,7 @@ export const InitEditButton: React.FC<
             className={
                 'flex gap-2 content-start items-center p-[0.625rem_1.25rem] text-secondary rounded-[0.375rem] transition-[background-color] ' +
                 'normal-case ' +
-                'hover:bg-secondaryBackgroundHover'
+                'hover:bg-cardHover'
             }
             onClick={onClick}
         >

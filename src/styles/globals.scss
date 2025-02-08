@@ -10,28 +10,36 @@
     --clr-text: #000;
     --clr-text-on-primary: #000;
     --clr-primary: hsl(146, 57%, 54%);
-    --clr-primary-hover: hsl(146, 57%, 40%);
-    --clr-primary-background-hover: hsla(0, 0%, 0%, 0.1);
+    --clr-primary-hover: hsl(146, 57%, 45%);
+    --clr-primary-background-hover: hsla(0, 0%, 0%, 0.04);
     --clr-secondary: hsl(340, 58%, 54%);
     --clr-secondary-hover: hsl(340, 58%, 44%);
     --clr-secondary-background-hover: hsla(0, 0%, 0%, 0.04);
     --clr-background-page: hsl(146, 79%, 92%);
     --clr-background-card: #fff;
+    --clr-background-card-hover: hsl(0, 0%, 0%, 0.04);
+    --clr-background-input: #fff;
+    --clr-border: hsl(146, 57%, 54%);
+    --clr-border-focus: #000;
 }
 
 
 @media (prefers-color-scheme: dark) {
    :root {
-       --clr-text: #fff;
-       --clr-text-on-primary: #000;
-       --clr-primary: hsl(146, 57%, 70%);
-       --clr-primary-hover: hsl(146, 57%, 60%);
-        --clr-primary-background-hover: hsla(0, 0%, 100%, 0.1);
-       --clr-secondary: hsl(340, 58%, 54%);
-       --clr-secondary-dimmed: hsl(340, 58%, 44%);
-       --clr-secondary-background-hover: hsla(0, 0%, 100%, 0.04);
-       --clr-background-page: #000;
-       --clr-background-card: hsl(146, 57%, 10%);
+        --clr-text: #fff;
+        --clr-text-on-primary: #000;
+        --clr-primary: hsl(146, 57%, 45%);
+        --clr-primary-hover: hsl(146, 57%, 40%);
+        --clr-primary-background-hover: hsla(0, 0%, 100%, 0.04);
+        --clr-secondary: hsl(340, 58%, 54%);
+        --clr-secondary-hover: hsl(340, 58%, 44%);
+        --clr-secondary-background-hover: hsla(0, 0%, 100%, 0.04);
+        --clr-background-page: #111;
+        --clr-background-card: hsl(146, 57%, 8%);
+        --clr-background-card-hover: hsla(0, 0%, 100%, 0.04);
+        --clr-background-input: rgb(25, 25, 26);
+        --clr-border: hsl(146, 57%, 20%);
+        --clr-border-focus: #fff;
    }
 } 
 
@@ -54,5 +62,19 @@ button.font-normal {
 
     .p-button-label, .p-button-icon {
         color: var(--clr-text-on-primary);
+    }
+}
+
+.p-fileupload {
+    border: 1px solid var(--clr-border);
+
+    .p-fileupload-buttonbar, .p-fileupload-content {
+        background-color: var(--clr-background-card);
+    }
+}
+
+@layer base {
+  :root {
+        --radius: 0.5rem;
     }
 }

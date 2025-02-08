@@ -2,7 +2,6 @@ import React from 'react';
 import { PostItem } from '@/app/home/(components)/PostItem';
 import container from '@/iocContainer';
 import { AbstractPostsService } from '@/service/posts/PostsService';
-import { Box } from '@mui/material';
 import { User } from '@clerk/backend';
 
 export async function PostsList({ user }: { user: User }) {
@@ -11,7 +10,7 @@ export async function PostsList({ user }: { user: User }) {
 
     return (
         <section className={'w-full px-8'}>
-            <Box className={'flex flex-col gap-4 items-center'}>
+            <div className={'flex flex-col gap-4 items-center'}>
                 {posts
                     .filter((post) => post.imagePublicIds.length > 0)
                     .map((post) => (
@@ -21,7 +20,7 @@ export async function PostsList({ user }: { user: User }) {
                             author={user}
                         />
                     ))}
-            </Box>
+            </div>
         </section>
     );
 }

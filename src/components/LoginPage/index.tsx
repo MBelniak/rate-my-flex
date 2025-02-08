@@ -1,4 +1,6 @@
 import React, { PropsWithChildren } from 'react';
+import { Typography } from '../Typography';
+
 export const LoginPage: React.FC<PropsWithChildren> = ({ children }) => {
     return (
         <div
@@ -7,8 +9,10 @@ export const LoginPage: React.FC<PropsWithChildren> = ({ children }) => {
             }
         >
             <div className="flex flex-col items-center gap-2">
-                <h1 className="font-logo text-4xl uppercase">Rate my flex</h1>
-                <p className="font-sans uppercase">Enjoy your body</p>
+                <Typography variant="h1" className="font-logo uppercase">
+                    Rate my flex
+                </Typography>
+                <Typography className="uppercase">Enjoy your body</Typography>
             </div>
             {children}
         </div>

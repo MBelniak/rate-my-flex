@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Section } from '@/app/account/[[...account]]/(components)/Section';
 import { PrimaryInterestEdit } from '@/app/account/[[...account]]/(components)/AboutYou/PrimaryInterestEdit';
 import { InitEditButton } from '@/app/account/[[...account]]/(components)/AboutYou/InitEditButton';
+import { Typography } from '@/components/Typography';
 
 export const PrimaryInterest: React.FC = () => {
     const [isEditing, setIsEditing] = useState(false);
@@ -12,9 +13,11 @@ export const PrimaryInterest: React.FC = () => {
                     <PrimaryInterestEdit setIsEditing={setIsEditing} />
                 ) : (
                     <div className={'flex flex-col gap-2'}>
-                        <p>Powerlifting</p>
+                        <Typography>Powerlifting</Typography>
                         <InitEditButton onClick={() => setIsEditing(true)}>
-                            <span>Change primary interest</span>
+                            <Typography variant="body2">
+                                Change primary interest
+                            </Typography>
                         </InitEditButton>
                     </div>
                 )}

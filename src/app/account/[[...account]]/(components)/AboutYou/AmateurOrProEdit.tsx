@@ -1,11 +1,12 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import {
-    FormControl,
-    MenuItem,
     Select,
-    SelectChangeEvent,
-} from '@mui/material';
-import { ControlButtons } from '@/app/account/[[...account]]/(components)/AboutYou/ControlButtons';
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import { ControlButtons } from './ControlButtons';
 
 const options = [
     {
@@ -22,24 +23,22 @@ export const AmateurOrProEdit: React.FC<{
 }> = ({ setIsEditing }) => {
     const [value, setValue] = useState('');
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setValue(event.target.value);
-    };
-
     return (
         <div className={'flex flex-col gap-4'}>
-            <FormControl
-                variant="standard"
-                sx={{ maxWidth: '200px', minWidth: '120px' }}
-            >
-                <Select value={value} onChange={handleChange}>
-                    {options.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
+            <Select onValueChange={setValue} defaultValue={value}>
+                <SelectTrigger>
+                    <SelectValue placeholder="Choose amateur or pro" />
+                </SelectTrigger>
+                <SelectContent>
+                    {options.map((option) => {
+                        return (
+                            <SelectItem key={option.value} value={option.value}>
+                                {option.label}
+                            </SelectItem>
+                        );
+                    })}
+                </SelectContent>
+            </Select>
             <ControlButtons
                 onCancel={(): void => setIsEditing(false)}
                 onSave={(): void => setIsEditing(false)}

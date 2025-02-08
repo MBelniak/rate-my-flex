@@ -1,3 +1,4 @@
+import { Typography } from '@/components/Typography';
 import React, { PropsWithChildren } from 'react';
 
 export const Section: React.FC<PropsWithChildren<{ sectionTitle: string }>> = ({
@@ -5,11 +6,13 @@ export const Section: React.FC<PropsWithChildren<{ sectionTitle: string }>> = ({
     children,
 }) => {
     return (
-        <div className={'flex flex-col gap-2 w-full'}>
-            <div className={'border-b-1 border-white/[0.06]'}>
-                <h2 className={'leading-8'}>{sectionTitle}</h2>
-            </div>
+        <section className={'flex flex-col gap-2 w-full'}>
+            <header className={'border-b-1 border-white/[0.1]'}>
+                <Typography className={'leading-8 text-lg'}>
+                    {sectionTitle}
+                </Typography>
+            </header>
             {children}
-        </div>
+        </section>
     );
 };

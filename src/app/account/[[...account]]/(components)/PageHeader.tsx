@@ -1,3 +1,4 @@
+import { Typography } from '@/components/Typography';
 import React from 'react';
 
 export const PageHeader: React.FC<{
@@ -6,8 +7,8 @@ export const PageHeader: React.FC<{
 }> = ({ headerText, subHeaderText }) => {
     return (
         <div className={'flex flex-col gap-1'}>
-            <h1 className={'font-[600] text-[2rem]'}>{headerText}</h1>
-            <p className="text-white/[0.65]">{subHeaderText}</p>
+            <Typography variant="h1">{headerText}</Typography>
+            <Typography>{subHeaderText}</Typography>
         </div>
     );
 };

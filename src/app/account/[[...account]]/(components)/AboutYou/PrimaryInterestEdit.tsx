@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Autocomplete, Box, Chip, TextField } from '@mui/material';
+import { Autocomplete, Chip } from '@mui/material';
 import { ControlButtons } from './ControlButtons';
+import { Input } from '@/components/ui/input';
 
 type Option = {
     label: string;
@@ -42,10 +43,10 @@ export const PrimaryInterestEdit: React.FC<{
                     )}
                 renderOption={(props, option) => {
                     return (
-                        <Box component={'li'} {...props}>
+                        <li {...props}>
                             {options.find((opt) => opt.value === option)
                                 ?.label ?? ''}
-                        </Box>
+                        </li>
                     );
                 }}
                 value={currentValues}
@@ -78,11 +79,12 @@ export const PrimaryInterestEdit: React.FC<{
                     ))
                 }
                 renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        variant="filled"
-                        placeholder="You primary workout purpose or interest"
-                        error={maxNumberOfInterestsReached}
+                    <Input
+                        {...params.inputProps}
+                        id={params.id}
+                        disabled={params.disabled}
+                        placeholder="Your primary workout purpose or interest"
+                        className={maxNumberOfInterestsReached ? '' : ''}
                         helperText={
                             maxNumberOfInterestsReached
                                 ? 'Reached maximum number of values'

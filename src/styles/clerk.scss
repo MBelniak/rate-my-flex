@@ -2,6 +2,7 @@
   background-color: var(--clr-primary);
   color: var(--clr-text-on-primary);
   text-transform: uppercase;
+  font-weight: 600;
 
 
   &:hover,
@@ -22,5 +23,24 @@
 
   &:hover {
     color: var(--clr-primary-hover);
+  }
+}
+
+.cl-formFieldInput {
+  background-color: var(--clr-background-card);
+  border: 1px solid var(--clr-border);
+  transition-duration: 0.2s;
+
+  &:not(.cl-formFieldInput__signOutOfOtherSessions) {
+    accent-color: var(--clr-border);
+  }
+
+  &:focus {
+    box-shadow: unset;
+    outline: var(--clr-border-focus) solid 1px;
+  }
+
+  &:hover {
+    background-color: var(--clr-background-card-hover);
   }
 }

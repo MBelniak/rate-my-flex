@@ -36,7 +36,7 @@ export default async function RootLayout({
                     </Script>
                 </head>
                 <body id="__next">
-                    <div className={`bg-page dark:bg-darkPage min-h-[100vh]`}>
+                    <div className={`bg-page min-h-[100vh]`}>
                         <NextUiProvider>{children}</NextUiProvider>
                     </div>
                 </body>

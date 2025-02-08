@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import PlaceResult = google.maps.places.PlaceResult;
+import { Input } from '@/components/ui/input';
 
 export const SearchPlace: React.FC<{
     setSelectedPlace: Dispatch<SetStateAction<PlaceResult | undefined>>;
@@ -33,7 +34,12 @@ export const SearchPlace: React.FC<{
 
     return (
         <div>
-            <input type={'text'} id={'place-search-input'} ref={inputRef} />
+            <Input
+                type={'text'}
+                id={'place-search-input'}
+                ref={inputRef}
+                placeholder="Type in location"
+            />
         </div>
     );
 };
