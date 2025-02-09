@@ -9,6 +9,7 @@
     --font-family: "Barlow", sans-serif;
     --clr-text: #000;
     --clr-text-on-primary: #000;
+    --clr-text-on-secondary: #fff;
     --clr-primary: hsl(146, 57%, 54%);
     --clr-primary-hover: hsl(146, 57%, 45%);
     --clr-primary-background-hover: hsla(0, 0%, 0%, 0.04);
@@ -28,6 +29,7 @@
    :root {
         --clr-text: #fff;
         --clr-text-on-primary: #000;
+        --clr-text-on-secondary: #fff;
         --clr-primary: hsl(146, 57%, 45%);
         --clr-primary-hover: hsl(146, 57%, 40%);
         --clr-primary-background-hover: hsla(0, 0%, 100%, 0.04);

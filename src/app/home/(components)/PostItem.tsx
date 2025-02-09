@@ -10,10 +10,11 @@ import {
     CardFooter,
     CardHeader,
 } from '@/components/ui/card';
+import { PostImagesCarousel } from '@/app/home/(components)/PostImagesCarousel';
 
 export async function PostItem({ post, author }: { post: Post; author: User }) {
     return (
-        <Card className={'w-full max-w-[600px]'}>
+        <Card className={'w-full max-w-[600px] relative'}>
             <CardHeader
                 className={'w-full flex justify-between backdrop-blur-[8px]'}
             >
@@ -35,16 +36,15 @@ export async function PostItem({ post, author }: { post: Post; author: User }) {
                     <p>{formatDistanceToNow(post.$createdAt)} ago</p>
                 </div>
             </CardHeader>
-            <CardContent>
-                <ul>
-                    {post.imagePublicIds.map((publicId) => (
-                        <li key={publicId}>
-                            <PostItemImage publicId={publicId} />
-                        </li>
-                    ))}
-                </ul>
+            <CardContent className={'p-0'}>
+                {post.imagePublicIds.length === 1 && (
+                    <PostItemImage publicId={post.imagePublicIds.at(0)!} />
+                )}
+                {post.imagePublicIds.length > 1 && (
+                    <PostImagesCarousel imagesIds={post.imagePublicIds} />
+                )}
             </CardContent>
-            <CardFooter className={'w-full flex gap-2 items-start'}>
+            <CardFooter className={'w-full flex gap-2 items-start p-4'}>
                 <div className={'flex flex-col'}>
                     <p className={'text-lg'}>{post.description}</p>
                     {post.placeId && <FlexLocation placeId={post.placeId} />}

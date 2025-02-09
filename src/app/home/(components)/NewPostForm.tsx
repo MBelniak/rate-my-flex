@@ -49,6 +49,7 @@ export const NewPostForm: React.FC = () => {
                             <Typography
                                 variant={'label'}
                                 htmlFor={'description'}
+                                className={'mt-[0.25rem]'}
                             >
                                 Post description
                             </Typography>
@@ -80,12 +81,23 @@ export const NewPostForm: React.FC = () => {
                                 }}
                                 ref={fileUploadRef}
                             />
+                            <Typography
+                                variant={'label'}
+                                htmlFor={'images'}
+                                className={'mt-[0.25rem]'}
+                            >
+                                Where did you flex?
+                            </Typography>
+                            <SearchPlace setSelectedPlace={setSelectedPlace} />
                         </div>
-                        <Typography variant={'label'} htmlFor={'images'}>
-                            Where did you flex?
-                        </Typography>
-                        <SearchPlace setSelectedPlace={setSelectedPlace} />
-                        <Button onClick={submitForm}>Add new flex!</Button>
+                        <Button
+                            onClick={submitForm}
+                            className={
+                                'bg-secondary hover:bg-secondaryHover text-white'
+                            }
+                        >
+                            Add flex!
+                        </Button>
                     </div>
                 </form>
             </CardContent>

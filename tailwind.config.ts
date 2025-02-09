@@ -31,6 +31,7 @@ const config: Config = {
             textColor: {
                 default: palette.text,
                 onPrimary: palette.textOnPrimary,
+                onSecondary: palette.textOnSecondary,
                 secondary: palette.secondary,
                 accent: palette.primaryHover,
                 placeholder: 'rgb(163 163 163)',

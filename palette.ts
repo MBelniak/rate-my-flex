@@ -1,6 +1,7 @@
 export const palette = {
     text: 'var(--clr-text)',
     textOnPrimary: 'var(--clr-text-on-primary)',
+    textOnSecondary: 'var(--clr-text-on-secondary)',
     primary: 'var(--clr-primary)',
     primaryHover: 'var(--clr-primary-hover)',
     primaryBackgroundHover: 'var(--clr-primary-background-hover)',
