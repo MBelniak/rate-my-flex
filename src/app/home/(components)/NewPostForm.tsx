@@ -2,11 +2,10 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { FileUpload } from 'primereact/fileupload';
 import { SearchPlace } from '@/app/home/(components)/SearchPlace';
-import PlaceResult = google.maps.places.PlaceResult;
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Typography } from '@/components/Typography';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import PlaceResult = google.maps.places.PlaceResult;
 
 export const NewPostForm: React.FC = () => {
     const [description, setDescription] = useState<string>('');
@@ -34,73 +33,66 @@ export const NewPostForm: React.FC = () => {
         });
     }, [description, selectedPlace]);
     return (
-        <Card className="my-[1rem]">
-            <CardHeader>
-                <Typography variant="h2">Upload new post</Typography>
-            </CardHeader>
-            <CardContent>
-                <form>
-                    <div className={'flex flex-col gap-4 py-2'}>
-                        <div
-                            className={
-                                'grid [grid-template-columns:1fr_4fr] gap-4'
-                            }
+        <div className="my-[1rem]">
+            <form>
+                <div className={'flex flex-col gap-4 py-2'}>
+                    <div
+                        className={'grid [grid-template-columns:1fr_4fr] gap-4'}
+                    >
+                        <Typography
+                            variant={'label'}
+                            htmlFor={'description'}
+                            className={'mt-[0.25rem]'}
                         >
-                            <Typography
-                                variant={'label'}
-                                htmlFor={'description'}
-                                className={'mt-[0.25rem]'}
-                            >
-                                Post description
-                            </Typography>
-                            <Input
-                                id={'description'}
-                                name={'description'}
-                                placeholder={'Add your description here...'}
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-                            <Typography variant={'label'} htmlFor={'images'}>
-                                Images
-                            </Typography>
-                            <FileUpload
-                                name="images"
-                                multiple
-                                accept="image/*"
-                                maxFileSize={1000000}
-                                emptyTemplate={
-                                    <p className="m-0">
-                                        Drag and drop files to here to upload.
-                                    </p>
-                                }
-                                cancelOptions={{
-                                    className: 'hidden',
-                                }}
-                                uploadOptions={{
-                                    className: 'hidden',
-                                }}
-                                ref={fileUploadRef}
-                            />
-                            <Typography
-                                variant={'label'}
-                                htmlFor={'images'}
-                                className={'mt-[0.25rem]'}
-                            >
-                                Where did you flex?
-                            </Typography>
-                            <SearchPlace setSelectedPlace={setSelectedPlace} />
-                        </div>
-                        <Button
-                            onClick={submitForm}
-                            className={
-                                'bg-secondary hover:bg-secondaryHover text-white'
+                            Post description
+                        </Typography>
+                        <Input
+                            id={'description'}
+                            name={'description'}
+                            placeholder={'Add your description here...'}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                        <Typography variant={'label'} htmlFor={'images'}>
+                            Images
+                        </Typography>
+                        <FileUpload
+                            name="images"
+                            multiple
+                            accept="image/*"
+                            maxFileSize={1000000}
+                            emptyTemplate={
+                                <p className="m-0">
+                                    Drag and drop files to here to upload.
+                                </p>
                             }
+                            cancelOptions={{
+                                className: 'hidden',
+                            }}
+                            uploadOptions={{
+                                className: 'hidden',
+                            }}
+                            ref={fileUploadRef}
+                        />
+                        <Typography
+                            variant={'label'}
+                            htmlFor={'images'}
+                            className={'mt-[0.25rem]'}
                         >
-                            Add flex!
-                        </Button>
+                            Where did you flex?
+                        </Typography>
+                        <SearchPlace setSelectedPlace={setSelectedPlace} />
                     </div>
-                </form>
-            </CardContent>
-        </Card>
+                    <Button
+                        onClick={submitForm}
+                        className={
+                            'bg-secondary hover:bg-secondaryHover text-white'
+                        }
+                    >
+                        Add flex!
+                    </Button>
+                </div>
+            </form>
+        </div>
     );
 };
